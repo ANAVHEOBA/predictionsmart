@@ -1,0 +1,15 @@
+[package]
+name = "predictionsmart"
+edition = "2024.beta"
+license = "MIT"
+authors = ["PredictionSmart Team"]
+
+[dependencies]
+# Sui dependencies are auto-included in 2024.beta edition
+
+[addresses]
+predictionsmart = "0x0"
+
+[dev-dependencies]
+
+[dev-addresses]
