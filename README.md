@@ -347,3 +347,17 @@ predictionsmart/
 ## License
 
 MIT
+
+
+
+
+ | Name      | Vibe                                      |
+  |-----------|-------------------------------------------|
+  | Oraclr    | Clean, modern, hints at oracle/prediction |
+  | Foresui   | Foresight + Sui mashup                    |
+  | Prophex   | Prophet + exchange                        |
+  | Veredic   | From "verdict" - markets decide truth     |
+  | Augur Sui | Classic prediction market name            |
+  | Presage   | Means "omen/prediction" - elegant         |
+  | Suicasts  | Sui + forecasts                           |
+  | Divina    | Divine/divination - knowing the future    |
