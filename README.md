@@ -1,12 +1,24 @@
 # PredictionSmart
 
-Sui Move smart contracts for decentralized prediction markets.
+Decentralized prediction market protocol built on **Sui Move**.
+
+---
+
+## Deployed on Sui Testnet
+
+```
+Package ID:      0x19469d6070113bd28ae67c52bd788ed8b6822eedbc8926aef4881a32bb11a685
+MarketRegistry:  0x26ccdbdc1b9d2f71a5155e11953a495128f30c3acbf0108d1d4f17701c829d7f
+Network:         Sui Testnet
+```
+
+**Explorer:** [View on SuiScan](https://suiscan.xyz/testnet/object/0x19469d6070113bd28ae67c52bd788ed8b6822eedbc8926aef4881a32bb11a685)
 
 ---
 
 ## Overview
 
-PredictionSmart is a prediction market protocol built on Sui. Users can create markets, trade outcome tokens, and earn rewards for accurate predictions.
+PredictionSmart enables users to create prediction markets, trade outcome tokens, and earn rewards for accurate predictions. Similar to Polymarket, but built natively on Sui.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -29,10 +41,29 @@ PredictionSmart is a prediction market protocol built on Sui. Users can create m
 |--------|-------------|----------|-------|
 | [Market](sources/market/README.md) | Binary prediction markets | 6 | 18 |
 | [Token](sources/token/README.md) | Outcome tokens (YES/NO) | 8 | 25 |
-| [Trading](sources/trading/README.md) | Order book + AMM | 10 | 18 |
-| [Wallet](sources/wallet/README.md) | Proxy wallets, gasless tx | 7 | 51 |
+| [Trading](sources/trading/README.md) | Order book + AMM | 10 | 28 |
+| [Wallet](sources/wallet/README.md) | Smart wallets, gasless tx | 7 | 51 |
+| [Oracle](sources/oracle/README.md) | Market resolution, price feeds | 8 | 21 |
+| [Fee](sources/fee/README.md) | Dynamic fees, referrals | 7 | 29 |
 
-**Total: 112 tests (all passing)**
+**Total: 172 tests (all passing)**
+
+---
+
+## Sui Integration
+
+Built natively on Sui using Mysten Labs frameworks:
+
+| Integration | Usage |
+|-------------|-------|
+| **Sui Move** | All smart contracts |
+| **Sui Objects** | Markets, Tokens, Vaults as first-class objects |
+| **Shared Objects** | MarketRegistry for global state |
+| **sui::coin** | Native SUI payments |
+| **sui::clock** | On-chain timestamps |
+| **sui::event** | Event emission for indexing |
+| **Pyth Network** | Price feed oracle (testnet) |
+| **Switchboard** | Price feed oracle (testnet) |
 
 ---
 
@@ -65,7 +96,11 @@ NO at $0.33 = 33% implied probability
 
 ### 4. Resolution
 
-When market ends, outcome is determined.
+When market ends, outcome is determined via:
+- **Admin resolution** - Platform admin decides
+- **Creator resolution** - Market creator decides
+- **Oracle resolution** - Optimistic oracle with disputes
+- **Price feed** - Automatic via Pyth/Switchboard
 
 ```
 YES wins → YES tokens worth $1, NO tokens worth $0
@@ -85,60 +120,84 @@ Winners redeem tokens for payout.
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                      Entry Points                           │
-│  market_entries | token_entries | trading_entries | wallet  │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    Business Logic                           │
-│  market_operations | token_operations | trading_operations  │
-│                    wallet_operations                        │
-└─────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   Types & Events                            │
-│  market_types | token_types | trading_types | wallet_types  │
-│  market_events | token_events | trading_events | wallet_ev  │
-└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              ENTRY POINTS                                    │
+│  market_entries | token_entries | trading_entries | wallet_entries          │
+│  oracle_entries | fee_entries                                                │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                            BUSINESS LOGIC                                    │
+│  market_operations | token_operations | trading_operations                   │
+│  wallet_operations | oracle_operations | fee_operations                      │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           TYPES & EVENTS                                     │
+│  market_types/events | token_types/events | trading_types/events            │
+│  wallet_types/events | oracle_types/events | fee_types/events               │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                          ORACLE ADAPTERS                                     │
+│                    pyth_adapter | switchboard_adapter                        │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-Each module follows:
+Each module follows a 4-file pattern:
 - `types.move` - Data structures, constants, getters, setters
-- `operations.move` - Business logic
-- `entries.move` - Entry functions
 - `events.move` - Event definitions
+- `operations.move` - Business logic (internal)
+- `entries.move` - Entry functions (public)
 
 ---
 
-## Features Summary
+## Features
 
 ### Market Module
 - Create binary markets (Yes/No)
-- Automatic trading end
-- Creator/Admin resolution
-- Void markets with refunds
+- Configurable resolution types (Admin/Creator/Oracle)
+- Automatic trading end on expiry
+- Void markets with full refunds
+- Pause/unpause functionality
 
 ### Token Module
 - Mint token sets (SUI → YES + NO)
 - Merge token sets (YES + NO → SUI)
 - Redeem winning tokens
+- Split/merge individual tokens
 - Refund voided markets
 
 ### Trading Module
 - Limit order book
-- AMM liquidity pools
-- Order matching
+- AMM liquidity pools (constant product)
+- Order matching engine
 - Swap YES ↔ NO
+- Liquidity provider rewards
 
 ### Wallet Module
-- Proxy wallets per user
-- Gasless transactions (relayer-paid)
-- Operator approvals with limits
+- Smart contract wallets
+- Operator approvals with spending limits
+- Session keys with expiration
 - Batch transactions
-- Ed25519/Secp256k1 signatures
+- Gasless transaction support
+
+### Oracle Module
+- Optimistic oracle (propose → dispute → finalize)
+- Pyth price feed integration
+- Switchboard price feed integration
+- Configurable dispute windows
+- Bond-based security
+
+### Fee Module
+- Dynamic fee tiers (Bronze → Diamond)
+- Volume-based discounts
+- Revenue sharing (protocol/creator/referrer)
+- Referral code system
+- Fee exemptions
 
 ---
 
@@ -159,7 +218,51 @@ sui move test
 ### Deploy
 
 ```bash
-sui client publish --gas-budget 100000000
+sui client publish --gas-budget 800000000
+```
+
+---
+
+## Frontend Integration
+
+See [docs/integration/](docs/integration/) for comprehensive frontend integration guides:
+
+- [README.md](docs/integration/README.md) - Setup and overview
+- [FLOW.md](docs/integration/FLOW.md) - Integration flow diagram
+- [market.md](docs/integration/market.md) - Market module
+- [token.md](docs/integration/token.md) - Token module
+- [trading.md](docs/integration/trading.md) - Trading module
+- [oracle.md](docs/integration/oracle.md) - Oracle module
+- [wallet.md](docs/integration/wallet.md) - Wallet module
+- [fee.md](docs/integration/fee.md) - Fee module
+
+### Quick Example
+
+```typescript
+import { SuiClient } from "@mysten/sui/client";
+import { Transaction } from "@mysten/sui/transactions";
+
+const client = new SuiClient({ url: "https://fullnode.testnet.sui.io:443" });
+
+const PACKAGE_ID = "0x19469d6070113bd28ae67c52bd788ed8b6822eedbc8926aef4881a32bb11a685";
+const MARKET_REGISTRY = "0x26ccdbdc1b9d2f71a5155e11953a495128f30c3acbf0108d1d4f17701c829d7f";
+
+// Create a market
+const tx = new Transaction();
+const [feeCoin] = tx.splitCoins(tx.gas, [100_000_000]);
+
+tx.moveCall({
+  target: `${PACKAGE_ID}::market_entries::create_market`,
+  arguments: [
+    tx.object(MARKET_REGISTRY),
+    tx.pure.string("Will BTC reach $100k by Dec 2025?"),
+    tx.pure.string("Resolves YES if BTC > $100,000"),
+    tx.pure.u8(1), // ORACLE resolution
+    tx.pure.u64(Date.now() + 30 * 24 * 60 * 60 * 1000),
+    feeCoin,
+    tx.object("0x6"),
+  ],
+});
 ```
 
 ---
@@ -168,53 +271,76 @@ sui client publish --gas-budget 100000000
 
 ```
 predictionsmart/
-├── Move.toml              # Package manifest
-├── README.md              # This file
+├── Move.toml                 # Package manifest
+├── README.md                 # This file
 ├── sources/
-│   ├── market/            # Market module
+│   ├── market/               # Market module
 │   │   ├── types.move
 │   │   ├── events.move
 │   │   ├── operations.move
 │   │   ├── entries.move
 │   │   └── README.md
-│   ├── token/             # Token module
+│   ├── token/                # Token module
 │   │   ├── types.move
 │   │   ├── events.move
 │   │   ├── operations.move
 │   │   ├── entries.move
 │   │   └── README.md
-│   ├── trading/           # Trading module
+│   ├── trading/              # Trading module
 │   │   ├── types.move
 │   │   ├── events.move
 │   │   ├── operations.move
 │   │   ├── entries.move
 │   │   └── README.md
-│   └── wallet/            # Wallet module
+│   ├── wallet/               # Wallet module
+│   │   ├── types.move
+│   │   ├── events.move
+│   │   ├── operations.move
+│   │   ├── entries.move
+│   │   └── README.md
+│   ├── oracle/               # Oracle module
+│   │   ├── types.move
+│   │   ├── events.move
+│   │   ├── operations.move
+│   │   ├── entries.move
+│   │   ├── pyth_adapter.move
+│   │   ├── switchboard_adapter.move
+│   │   └── README.md
+│   └── fee/                  # Fee module
 │       ├── types.move
 │       ├── events.move
 │       ├── operations.move
 │       ├── entries.move
 │       └── README.md
-└── tests/
-    ├── market_tests.move
-    ├── token_tests.move
-    ├── trading_tests.move
-    └── wallet_tests.move
+├── tests/
+│   ├── market_tests.move
+│   ├── token_tests.move
+│   ├── trading_tests.move
+│   ├── wallet_tests.move
+│   ├── oracle_tests.move
+│   └── fee_tests.move
+└── docs/
+    └── integration/          # Frontend integration docs
+        ├── README.md
+        ├── FLOW.md
+        ├── market.md
+        ├── token.md
+        ├── trading.md
+        ├── oracle.md
+        ├── wallet.md
+        └── fee.md
 ```
 
 ---
 
-## Not Yet Implemented
+## Future Improvements
 
-| Module | Description |
-|--------|-------------|
-| Oracle Adapter | UMA/Pyth integration for automated resolution |
-| Fee Module | Dynamic fees, tiers, revenue sharing |
+| Feature | Description |
+|---------|-------------|
 | Multi-Collateral | USDC and stablecoin support |
-| Neg-Risk | Multi-outcome markets (>2 outcomes) |
-| Off-chain Matching | Hybrid order book |
-
-See [modules.md](modules.md) for details.
+| Multi-Outcome | Markets with >2 outcomes |
+| Off-chain Matching | Hybrid order book for gas efficiency |
+| Governance | DAO for protocol parameters |
 
 ---
 
