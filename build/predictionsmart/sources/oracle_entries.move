@@ -241,7 +241,7 @@ module predictionsmart::oracle_entries {
     // FEATURE 6: PRICE FEED RESOLUTION - ENTRY FUNCTIONS
     // ═══════════════════════════════════════════════════════════════════════════
 
-    /// Resolve market using price feed data
+    /// Resolve market using price feed data (manual price submission)
     entry fun resolve_by_price_feed(
         registry: &mut OracleRegistry,
         market: &mut Market,
@@ -263,6 +263,22 @@ module predictionsmart::oracle_entries {
             ctx,
         );
     }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // FEATURE 6B: PYTH PRICE FEED RESOLUTION
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    // Note: Pyth integration requires passing the PriceInfoObject
+    // The actual Pyth resolution will be added once dependencies are resolved
+    // Usage: Call pyth_adapter::resolve_price_condition() and pass result to resolve_by_price_feed
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // FEATURE 6C: SWITCHBOARD PRICE FEED RESOLUTION
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    // Note: Switchboard integration requires passing the Aggregator object
+    // The actual Switchboard resolution will be added once dependencies are resolved
+    // Usage: Call switchboard_adapter::resolve_price_condition() and pass result to resolve_by_price_feed
 
     // ═══════════════════════════════════════════════════════════════════════════
     // FEATURE 7: EMERGENCY OVERRIDE - ENTRY FUNCTIONS

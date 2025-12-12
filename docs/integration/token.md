@@ -76,7 +76,7 @@ interface TokenVault {
 Creates token vault for a market (usually done by market creator).
 
 ```typescript
-const PACKAGE_ID = "0x19469d6070113bd28ae67c52bd788ed8b6822eedbc8926aef4881a32bb11a685";
+const PACKAGE_ID = "0x9d006bf5d2141570cf19e4cee42ed9638db7aff56cb30ad1a4b1aa212caf9adb";
 
 async function initializeVault(marketId: string) {
   const tx = new Transaction();
@@ -429,7 +429,7 @@ async function onTokensRedeemed(callback: (event: any) => void) {
 import { Transaction } from "@mysten/sui/transactions";
 import { SuiClient } from "@mysten/sui/client";
 
-const PACKAGE_ID = "0x19469d6070113bd28ae67c52bd788ed8b6822eedbc8926aef4881a32bb11a685";
+const PACKAGE_ID = "0x9d006bf5d2141570cf19e4cee42ed9638db7aff56cb30ad1a4b1aa212caf9adb";
 
 class TokenService {
   constructor(

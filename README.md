@@ -7,12 +7,12 @@ Decentralized prediction market protocol built on **Sui Move**.
 ## Deployed on Sui Testnet
 
 ```
-Package ID:      0x19469d6070113bd28ae67c52bd788ed8b6822eedbc8926aef4881a32bb11a685
-MarketRegistry:  0x26ccdbdc1b9d2f71a5155e11953a495128f30c3acbf0108d1d4f17701c829d7f
+Package ID:      0x9d006bf5d2141570cf19e4cee42ed9638db7aff56cb30ad1a4b1aa212caf9adb
+MarketRegistry:  0xdb9b4975c219f9bfe8755031d467a274c94eacb317f7dbb144c5285a023fdc10
 Network:         Sui Testnet
 ```
 
-**Explorer:** [View on SuiScan](https://suiscan.xyz/testnet/object/0x19469d6070113bd28ae67c52bd788ed8b6822eedbc8926aef4881a32bb11a685)
+**Explorer:** [View on SuiScan](https://suiscan.xyz/testnet/object/0x9d006bf5d2141570cf19e4cee42ed9638db7aff56cb30ad1a4b1aa212caf9adb)
 
 ---
 
@@ -244,8 +244,8 @@ import { Transaction } from "@mysten/sui/transactions";
 
 const client = new SuiClient({ url: "https://fullnode.testnet.sui.io:443" });
 
-const PACKAGE_ID = "0x19469d6070113bd28ae67c52bd788ed8b6822eedbc8926aef4881a32bb11a685";
-const MARKET_REGISTRY = "0x26ccdbdc1b9d2f71a5155e11953a495128f30c3acbf0108d1d4f17701c829d7f";
+const PACKAGE_ID = "0x9d006bf5d2141570cf19e4cee42ed9638db7aff56cb30ad1a4b1aa212caf9adb";
+const MARKET_REGISTRY = "0xdb9b4975c219f9bfe8755031d467a274c94eacb317f7dbb144c5285a023fdc10";
 
 // Create a market
 const tx = new Transaction();

@@ -14,7 +14,7 @@ interface Market {
   question: string;
   description: string;
   creator: string;
-  resolution_type: number; // 0=ADMIN, 1=ORACLE, 2=CREATOR
+  resolution_type: number; // 0=ADMIN, 1=ORACLE
   status: number; // 0=OPEN, 1=TRADING_ENDED, 2=RESOLVED, 3=VOIDED
   outcome: number | null; // 0=YES, 1=NO, null=unresolved
   end_time: number; // Unix timestamp (ms)
@@ -46,13 +46,13 @@ Creates a new prediction market.
 ```typescript
 import { Transaction } from "@mysten/sui/transactions";
 
-const PACKAGE_ID = "0x19469d6070113bd28ae67c52bd788ed8b6822eedbc8926aef4881a32bb11a685";
-const MARKET_REGISTRY = "0x26ccdbdc1b9d2f71a5155e11953a495128f30c3acbf0108d1d4f17701c829d7f";
+const PACKAGE_ID = "0x9d006bf5d2141570cf19e4cee42ed9638db7aff56cb30ad1a4b1aa212caf9adb";
+const MARKET_REGISTRY = "0xdb9b4975c219f9bfe8755031d467a274c94eacb317f7dbb144c5285a023fdc10";
 
 async function createMarket(
   question: string,
   description: string,
-  resolutionType: number, // 0=ADMIN, 1=ORACLE, 2=CREATOR
+  resolutionType: number, // 0=ADMIN, 1=ORACLE
   endTime: number, // Unix timestamp in milliseconds
   creationFee: number // in MIST (1 SUI = 1_000_000_000 MIST)
 ) {
@@ -135,29 +135,7 @@ async function resolveByAdmin(
 }
 ```
 
-### 4. Resolve Market (Creator)
-
-Creator resolves their own market.
-
-```typescript
-async function resolveByCreator(marketId: string, outcome: number) {
-  const tx = new Transaction();
-
-  tx.moveCall({
-    target: `${PACKAGE_ID}::market_entries::resolve_by_creator`,
-    arguments: [
-      tx.object(MARKET_REGISTRY),
-      tx.object(marketId),
-      tx.pure.u8(outcome),
-      tx.object("0x6"), // Clock
-    ],
-  });
-
-  return tx;
-}
-```
-
-### 5. Void Market
+### 4. Void Market
 
 Cancel market and enable refunds.
 
@@ -355,7 +333,6 @@ async function getMarketHistory(marketId: string) {
 const RESOLUTION_TYPE = {
   ADMIN: 0,
   ORACLE: 1,
-  CREATOR: 2,
 };
 
 // Market Status
@@ -395,8 +372,8 @@ const OUTCOME = {
 import { Transaction } from "@mysten/sui/transactions";
 import { SuiClient } from "@mysten/sui/client";
 
-const PACKAGE_ID = "0x19469d6070113bd28ae67c52bd788ed8b6822eedbc8926aef4881a32bb11a685";
-const MARKET_REGISTRY = "0x26ccdbdc1b9d2f71a5155e11953a495128f30c3acbf0108d1d4f17701c829d7f";
+const PACKAGE_ID = "0x9d006bf5d2141570cf19e4cee42ed9638db7aff56cb30ad1a4b1aa212caf9adb";
+const MARKET_REGISTRY = "0xdb9b4975c219f9bfe8755031d467a274c94eacb317f7dbb144c5285a023fdc10";
 
 class MarketService {
   constructor(
@@ -476,23 +453,10 @@ class MarketService {
       .filter((m: any) => m.status === 0); // Only OPEN markets
   }
 
-  // Resolve market (creator)
-  async resolveAsCreator(marketId: string, outcome: "YES" | "NO") {
-    const tx = new Transaction();
-
-    tx.moveCall({
-      target: `${PACKAGE_ID}::market_entries::resolve_by_creator`,
-      arguments: [
-        tx.object(MARKET_REGISTRY),
-        tx.object(marketId),
-        tx.pure.u8(outcome === "YES" ? 0 : 1),
-        tx.object("0x6"),
-      ],
-    });
-
-    return await this.signAndExecute(tx);
-  }
 }
+
+
+
 
 // Usage with React dApp Kit
 import { useSignAndExecuteTransaction, useSuiClient } from "@mysten/dapp-kit";

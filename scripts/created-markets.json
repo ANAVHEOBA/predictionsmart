@@ -1,0 +1,127 @@
+{
+  "timestamp": "2025-12-10T12:45:37.875Z",
+  "network": "testnet",
+  "packageId": "0x41e4ff9b7bbb704402b880e31b13958d932e6bbc03766f1c3e6083833148affe",
+  "results": [
+    {
+      "category": "Nigeria",
+      "question": "Will Tinubu remain President of Nigeria through 2026?",
+      "marketId": "0x53f30bb8102aeae277c4995c8b1dc9e0cc6513e0bdb526c48de0e4e7465dd9e0",
+      "status": "success"
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will Naira reach 2000/USD in 2026?",
+      "marketId": "0xa8006a78a5ef209e2fd534613df5032560d831b41eb35554c836a65951bf6bf6",
+      "status": "success"
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will Naira strengthen below 1200/USD in 2026?",
+      "marketId": "0x5c3492fd67ef86bbceeaf4569505e9053cb6916a4b588b8c5b0935ab3d1e4dd5",
+      "status": "success"
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will Nigeria's inflation fall below 20% in 2026?",
+      "marketId": "0xe1cc1c32b542a1cd3109d0249419cdc948b4dda3e2f55ecbab3f29bdd68083b8",
+      "status": "success"
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will fuel subsidy return in Nigeria in 2026?",
+      "marketId": "0x1ec9c41a4f277b7e51df9dcc9fb2192dccb566c856914acd3e92b04ac2a6eadb",
+      "status": "success"
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will PDP win Edo or Ondo governorship in 2026?",
+      "marketId": "0x70cdde3de0bd261947294d8c44d5bad9b44d31a66b843b4b2d191e94e177a895",
+      "status": "success"
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will Nigeria win AFCON 2025?",
+      "marketId": "0x1744d044ca4c645599cae4289cb538d99680d71afebcde3f8a2e9ecc6d5f27a7",
+      "status": "success"
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will Nigeria qualify for 2026 World Cup?",
+      "marketId": "0x43695e8a82f55db467189dba10b2d804fd93b6a337f2d82de0ae329ac9162c55",
+      "status": "success"
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will petrol price exceed 1500 Naira per litre in 2026?",
+      "marketId": "0x51d27b5176808c8131dcf4ae842f4dd308f16c953bb4a0a4ce9d9e514554afc6",
+      "status": "success"
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will Dangote Refinery reach full capacity in 2026?",
+      "marketId": "0x1d0cf1cfaae6c31ac8665ef3a835c32e39366eb2f8ad6066d71b70a6728dc7a3",
+      "status": "success"
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will CBN governor be replaced in 2026?",
+      "marketId": "0x55d1b957405a9357ee162b33b35b9bb2fd08506e18786891ce05705cf4d79fe6",
+      "status": "success"
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will Nigeria's foreign reserves exceed $40 billion in 2026?",
+      "marketId": "0xdd4b40c2a519db1e5d67586b95c8e6634c425317c9e1a9da60ef25ecba5908c2",
+      "status": "success"
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will there be nationwide protests in Nigeria in 2026?",
+      "marketId": "0x4448738e2a4abc421a5045cdf8e13d84d55f9f4f80cf965ae02b82ebe1eca14b",
+      "status": "success"
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will minimum wage increase above 100k Naira in 2026?",
+      "marketId": "0xf600d868b6bd7c69a7a7647a90057151eda90c9ea49cbd13eef2bf649ca8b1a8",
+      "status": "success"
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will Victor Osimhen transfer to Premier League club in 2026?",
+      "marketId": "0xa4a80a144276d845703e50fadb309ad770262e8dae9c9e57cd89ae6599144c18",
+      "status": "success"
+    },
+    {
+      "category": "Africa",
+      "question": "Will South Africa's ANC lose majority in 2026?",
+      "marketId": "0x2878b8b56ef8ecca910af5d6747575832bc09d4cf28c98dee2a806534141b945",
+      "status": "success"
+    },
+    {
+      "category": "Africa",
+      "question": "Will Kenya's shilling strengthen against USD in 2026?",
+      "marketId": "0xb719cd46300c24e229061b686ca1c85676cfbc883d3a2085bc76dd3225928a88",
+      "status": "success"
+    },
+    {
+      "category": "Africa",
+      "question": "Will Ghana default on debt again in 2026?",
+      "marketId": "0xcc1bfc259db8b3c2fb89297a4b82d73a5b44e63e11df672b9912db2caae40891",
+      "status": "success"
+    },
+    {
+      "category": "Africa",
+      "question": "Will Egypt host AFCON 2025?",
+      "marketId": "0x479f59b1bc5041ec38d1692805b252c4d1e33150aafba6802e79e7b6fcb29bc6",
+      "status": "success"
+    },
+    {
+      "category": "Africa",
+      "question": "Will any African country adopt Bitcoin as legal tender in 2026?",
+      "marketId": "0xe3d63588e85899f9d9939fe75e1556541166eb1109524261a1280c1f6c509506",
+      "status": "success"
+    }
+  ]
+}

@@ -31,7 +31,7 @@ module predictionsmart::trading_types {
     const MIN_ORDER_AMOUNT: u64 = 10_000_000; // 0.01 SUI minimum order
 
     // --- AMM Constants ---
-    const MIN_LIQUIDITY: u64 = 1_000_000_000; // 1 SUI minimum liquidity
+    const MIN_LIQUIDITY: u64 = 10_000_000; // 0.01 SUI minimum liquidity
     const AMM_FEE_BPS: u64 = 30; // 0.3% swap fee
 
     // ═══════════════════════════════════════════════════════════════════════════

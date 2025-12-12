@@ -145,6 +145,92 @@ module predictionsmart::market_operations {
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
+    // FEATURE 2: CREATE MARKET (ADMIN - NO FEE)
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    /// Create a new binary market as admin (no fee required)
+    /// Only admin can call - for official/featured markets
+    public fun create_market_admin(
+        registry: &mut MarketRegistry,
+        _admin_cap: &AdminCap,
+        question: String,
+        description: String,
+        image_url: String,
+        category: String,
+        tags: vector<String>,
+        outcome_yes_label: String,
+        outcome_no_label: String,
+        end_time: u64,
+        resolution_time: u64,
+        timeframe: String,
+        resolution_type: u8,
+        resolution_source: String,
+        fee_bps: u16,
+        clock: &Clock,
+        ctx: &mut TxContext,
+    ): Market {
+        // Check platform not paused
+        assert!(!market_types::registry_paused(registry), E_PLATFORM_PAUSED);
+
+        // Validate question length
+        let question_len = string::length(&question);
+        assert!(question_len >= market_types::min_question_length(), E_QUESTION_TOO_SHORT);
+        assert!(question_len <= market_types::max_question_length(), E_QUESTION_TOO_LONG);
+
+        // Validate timing
+        let now = clock.timestamp_ms();
+        assert!(end_time > now + market_types::min_duration_ms(), E_INVALID_END_TIME);
+        assert!(resolution_time >= end_time, E_INVALID_RESOLUTION_TIME);
+
+        // Validate fee
+        assert!(fee_bps <= market_types::max_fee_bps(), E_INVALID_FEE);
+
+        // Validate resolution type
+        assert!(resolution_type <= market_types::resolution_oracle(), E_INVALID_RESOLUTION_TYPE);
+
+        // No fee payment for admin - skip fee transfer
+
+        // Get new market ID
+        let market_id = market_types::increment_market_count(registry);
+
+        // Create market
+        let market = market_types::new_market(
+            market_id,
+            question,
+            description,
+            image_url,
+            category,
+            tags,
+            outcome_yes_label,
+            outcome_no_label,
+            now,
+            end_time,
+            resolution_time,
+            timeframe,
+            resolution_type,
+            resolution_source,
+            fee_bps,
+            ctx.sender(),
+            ctx,
+        );
+
+        // Emit event
+        market_events::emit_market_created(
+            market_id,
+            *market_types::question(&market),
+            *market_types::category(&market),
+            market_types::creator(&market),
+            end_time,
+            resolution_time,
+            resolution_type,
+            fee_bps,
+            now,
+        );
+
+        market
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
     // FEATURE 3: END TRADING
     // ═══════════════════════════════════════════════════════════════════════════
 
@@ -181,27 +267,6 @@ module predictionsmart::market_operations {
     // ═══════════════════════════════════════════════════════════════════════════
     // FEATURE 4: RESOLVE MARKET
     // ═══════════════════════════════════════════════════════════════════════════
-
-    /// Resolve market by creator (only for creator-resolved markets)
-    public fun resolve_by_creator(
-        market: &mut Market,
-        winning_outcome: u8,
-        clock: &Clock,
-        ctx: &TxContext,
-    ) {
-        let sender = ctx.sender();
-
-        // Must be creator
-        assert!(sender == market_types::creator(market), E_NOT_CREATOR);
-
-        // Must be creator resolution type
-        assert!(
-            market_types::resolution_type(market) == market_types::resolution_creator(),
-            E_NOT_AUTHORIZED
-        );
-
-        resolve_internal(market, winning_outcome, sender, clock);
-    }
 
     /// Resolve market by admin (can resolve any market)
     public fun resolve_by_admin(

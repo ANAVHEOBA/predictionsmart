@@ -1,0 +1,224 @@
+{
+  "markets": [
+    {
+      "category": "Nigeria",
+      "question": "Will Tinubu remain President of Nigeria through 2026?",
+      "description": "This market resolves YES if Bola Ahmed Tinubu remains the President of Nigeria through December 31, 2026.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 385,
+      "resolution_days": 388,
+      "image_url": "https://images.unsplash.com/photo-1609198092458-38a293c7ac4b?w=400",
+      "tags": ["Nigeria", "Tinubu", "Politics"]
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will Naira reach 2000/USD in 2026?",
+      "description": "This market resolves YES if the Nigerian Naira officially trades at or above 2000 NGN per 1 USD on any major exchange during 2026.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 385,
+      "resolution_days": 388,
+      "image_url": "https://images.unsplash.com/photo-1609198092458-38a293c7ac4b?w=400",
+      "tags": ["Nigeria", "Naira", "Forex"]
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will Naira strengthen below 1200/USD in 2026?",
+      "description": "This market resolves YES if the Nigerian Naira strengthens to trade below 1200 NGN per 1 USD during 2026.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 385,
+      "resolution_days": 388,
+      "image_url": "https://images.unsplash.com/photo-1609198092458-38a293c7ac4b?w=400",
+      "tags": ["Nigeria", "Naira", "Economy"]
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will Nigeria's inflation fall below 20% in 2026?",
+      "description": "This market resolves YES if Nigeria's official inflation rate falls below 20% during 2026.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 385,
+      "resolution_days": 388,
+      "image_url": "https://images.unsplash.com/photo-1609198092458-38a293c7ac4b?w=400",
+      "tags": ["Nigeria", "Inflation", "Economy"]
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will fuel subsidy return in Nigeria in 2026?",
+      "description": "This market resolves YES if the Nigerian government reinstates fuel subsidies during 2026.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 385,
+      "resolution_days": 388,
+      "image_url": "https://images.unsplash.com/photo-1609198092458-38a293c7ac4b?w=400",
+      "tags": ["Nigeria", "Fuel", "Subsidy"]
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will PDP win Edo or Ondo governorship in 2026?",
+      "description": "This market resolves YES if PDP wins any governorship election held in Nigeria during 2026.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 385,
+      "resolution_days": 388,
+      "image_url": "https://images.unsplash.com/photo-1609198092458-38a293c7ac4b?w=400",
+      "tags": ["Nigeria", "PDP", "Elections"]
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will Nigeria win AFCON 2025?",
+      "description": "This market resolves YES if the Nigerian Super Eagles win the 2025 Africa Cup of Nations.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 60,
+      "resolution_days": 63,
+      "image_url": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400",
+      "tags": ["Nigeria", "AFCON", "Football"]
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will Nigeria qualify for 2026 World Cup?",
+      "description": "This market resolves YES if Nigeria qualifies for the 2026 FIFA World Cup.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 330,
+      "resolution_days": 333,
+      "image_url": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400",
+      "tags": ["Nigeria", "World Cup", "Football"]
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will petrol price exceed 1500 Naira per litre in 2026?",
+      "description": "This market resolves YES if official petrol price in Nigeria exceeds 1500 NGN per litre during 2026.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 385,
+      "resolution_days": 388,
+      "image_url": "https://images.unsplash.com/photo-1609198092458-38a293c7ac4b?w=400",
+      "tags": ["Nigeria", "Petrol", "Price"]
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will Dangote Refinery reach full capacity in 2026?",
+      "description": "This market resolves YES if Dangote Refinery operates at full 650,000 bpd capacity during 2026.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 385,
+      "resolution_days": 388,
+      "image_url": "https://images.unsplash.com/photo-1609198092458-38a293c7ac4b?w=400",
+      "tags": ["Nigeria", "Dangote", "Oil"]
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will CBN governor be replaced in 2026?",
+      "description": "This market resolves YES if Nigeria's Central Bank Governor is replaced during 2026.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 385,
+      "resolution_days": 388,
+      "image_url": "https://images.unsplash.com/photo-1609198092458-38a293c7ac4b?w=400",
+      "tags": ["Nigeria", "CBN", "Banking"]
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will Nigeria's foreign reserves exceed $40 billion in 2026?",
+      "description": "This market resolves YES if Nigeria's foreign reserves exceed $40 billion during 2026.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 385,
+      "resolution_days": 388,
+      "image_url": "https://images.unsplash.com/photo-1609198092458-38a293c7ac4b?w=400",
+      "tags": ["Nigeria", "Reserves", "Economy"]
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will there be nationwide protests in Nigeria in 2026?",
+      "description": "This market resolves YES if Nigeria experiences major nationwide protests (similar to EndSARS) during 2026.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 385,
+      "resolution_days": 388,
+      "image_url": "https://images.unsplash.com/photo-1609198092458-38a293c7ac4b?w=400",
+      "tags": ["Nigeria", "Protests", "Politics"]
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will minimum wage increase above 100k Naira in 2026?",
+      "description": "This market resolves YES if Nigeria's minimum wage is increased above 100,000 NGN during 2026.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 385,
+      "resolution_days": 388,
+      "image_url": "https://images.unsplash.com/photo-1609198092458-38a293c7ac4b?w=400",
+      "tags": ["Nigeria", "Minimum Wage", "Labor"]
+    },
+    {
+      "category": "Nigeria",
+      "question": "Will Victor Osimhen transfer to Premier League club in 2026?",
+      "description": "This market resolves YES if Victor Osimhen joins a Premier League club during 2026.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 385,
+      "resolution_days": 388,
+      "image_url": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400",
+      "tags": ["Nigeria", "Osimhen", "Football"]
+    },
+    {
+      "category": "Africa",
+      "question": "Will South Africa's ANC lose majority in 2026?",
+      "description": "This market resolves YES if ANC holds less than 50% of seats after any 2026 election.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 385,
+      "resolution_days": 388,
+      "image_url": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400",
+      "tags": ["South Africa", "ANC", "Elections"]
+    },
+    {
+      "category": "Africa",
+      "question": "Will Kenya's shilling strengthen against USD in 2026?",
+      "description": "This market resolves YES if the Kenyan Shilling ends 2026 stronger vs USD than it started.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 385,
+      "resolution_days": 388,
+      "image_url": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400",
+      "tags": ["Kenya", "Shilling", "Forex"]
+    },
+    {
+      "category": "Africa",
+      "question": "Will Ghana default on debt again in 2026?",
+      "description": "This market resolves YES if Ghana misses any debt payment or restructures debt during 2026.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 385,
+      "resolution_days": 388,
+      "image_url": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400",
+      "tags": ["Ghana", "Debt", "Economy"]
+    },
+    {
+      "category": "Africa",
+      "question": "Will Egypt host AFCON 2025?",
+      "description": "This market resolves YES if Egypt successfully hosts AFCON 2025 (Dec 2025 - Jan 2026).",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 60,
+      "resolution_days": 63,
+      "image_url": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400",
+      "tags": ["Egypt", "AFCON", "Football"]
+    },
+    {
+      "category": "Africa",
+      "question": "Will any African country adopt Bitcoin as legal tender in 2026?",
+      "description": "This market resolves YES if any African nation adopts Bitcoin as legal tender during 2026.",
+      "outcome_yes": "Yes",
+      "outcome_no": "No",
+      "end_days": 385,
+      "resolution_days": 388,
+      "image_url": "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=400",
+      "tags": ["Africa", "Bitcoin", "Crypto"]
+    }
+  ]
+}

@@ -22,16 +22,15 @@ module predictionsmart::market_types {
     const OUTCOME_UNSET: u8 = 255;
 
     // --- Resolution Type ---
-    const RESOLUTION_CREATOR: u8 = 0;
-    const RESOLUTION_ADMIN: u8 = 1;
-    const RESOLUTION_ORACLE: u8 = 2;
+    const RESOLUTION_ADMIN: u8 = 0;
+    const RESOLUTION_ORACLE: u8 = 1;
 
     // --- Validation Limits ---
     const MIN_QUESTION_LENGTH: u64 = 10;
     const MAX_QUESTION_LENGTH: u64 = 500;
     const MAX_FEE_BPS: u16 = 1000;  // 10%
     const MIN_DURATION_MS: u64 = 3600000;  // 1 hour
-    const DEFAULT_CREATION_FEE: u64 = 1_000_000_000;  // 1 SUI
+    const DEFAULT_CREATION_FEE: u64 = 10_000_000;  // 0.01 SUI
 
     // ═══════════════════════════════════════════════════════════════════════════
     // STRUCTS
@@ -113,7 +112,6 @@ module predictionsmart::market_types {
     public fun outcome_unset(): u8 { OUTCOME_UNSET }
 
     // --- Resolution Type ---
-    public fun resolution_creator(): u8 { RESOLUTION_CREATOR }
     public fun resolution_admin(): u8 { RESOLUTION_ADMIN }
     public fun resolution_oracle(): u8 { RESOLUTION_ORACLE }
 

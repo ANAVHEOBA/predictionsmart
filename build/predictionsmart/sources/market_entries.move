@@ -90,6 +90,64 @@ module predictionsmart::market_entries {
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
+    // FEATURE 2: CREATE MARKET (ADMIN - NO FEE)
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    /// Create a new binary market as admin (no fee required)
+    /// Only admin can call - for official/featured markets
+    entry fun create_market_admin(
+        registry: &mut MarketRegistry,
+        admin_cap: &AdminCap,
+        question: vector<u8>,
+        description: vector<u8>,
+        image_url: vector<u8>,
+        category: vector<u8>,
+        tags: vector<vector<u8>>,
+        outcome_yes_label: vector<u8>,
+        outcome_no_label: vector<u8>,
+        end_time: u64,
+        resolution_time: u64,
+        timeframe: vector<u8>,
+        resolution_type: u8,
+        resolution_source: vector<u8>,
+        fee_bps: u16,
+        clock: &Clock,
+        ctx: &mut TxContext,
+    ) {
+        // Convert tags
+        let mut string_tags = vector::empty<string::String>();
+        let mut i = 0;
+        let len = vector::length(&tags);
+        while (i < len) {
+            vector::push_back(&mut string_tags, string::utf8(*vector::borrow(&tags, i)));
+            i = i + 1;
+        };
+
+        let market = market_operations::create_market_admin(
+            registry,
+            admin_cap,
+            string::utf8(question),
+            string::utf8(description),
+            string::utf8(image_url),
+            string::utf8(category),
+            string_tags,
+            string::utf8(outcome_yes_label),
+            string::utf8(outcome_no_label),
+            end_time,
+            resolution_time,
+            string::utf8(timeframe),
+            resolution_type,
+            string::utf8(resolution_source),
+            fee_bps,
+            clock,
+            ctx,
+        );
+
+        // Share market globally
+        market_types::share_market(market);
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
     // FEATURE 3: END TRADING
     // ═══════════════════════════════════════════════════════════════════════════
 
@@ -105,16 +163,6 @@ module predictionsmart::market_entries {
     // ═══════════════════════════════════════════════════════════════════════════
     // FEATURE 4: RESOLVE MARKET
     // ═══════════════════════════════════════════════════════════════════════════
-
-    /// Creator resolves their market
-    entry fun resolve_by_creator(
-        market: &mut Market,
-        winning_outcome: u8,
-        clock: &Clock,
-        ctx: &TxContext,
-    ) {
-        market_operations::resolve_by_creator(market, winning_outcome, clock, ctx);
-    }
 
     /// Admin resolves any market
     entry fun resolve_by_admin(

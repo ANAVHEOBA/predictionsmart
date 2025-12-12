@@ -36,9 +36,9 @@ module predictionsmart::oracle_types {
     const OUTCOME_UNSET: u8 = 255;
 
     // --- Defaults ---
-    const DEFAULT_BOND: u64 = 1_000_000_000;        // 1 SUI
+    const DEFAULT_BOND: u64 = 10_000_000;           // 0.01 SUI
     const DEFAULT_DISPUTE_WINDOW: u64 = 7_200_000;  // 2 hours in ms
-    const MIN_BOND: u64 = 100_000_000;              // 0.1 SUI
+    const MIN_BOND: u64 = 1_000_000;                // 0.001 SUI
     const MAX_DISPUTE_WINDOW: u64 = 86_400_000;     // 24 hours in ms
 
     // ═══════════════════════════════════════════════════════════════════════════

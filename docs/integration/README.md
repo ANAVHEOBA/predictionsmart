@@ -4,10 +4,10 @@
 
 ```typescript
 const CONFIG = {
-  PACKAGE_ID: "0x19469d6070113bd28ae67c52bd788ed8b6822eedbc8926aef4881a32bb11a685",
-  MARKET_REGISTRY: "0x26ccdbdc1b9d2f71a5155e11953a495128f30c3acbf0108d1d4f17701c829d7f",
-  ADMIN_CAP: "0xd775de4e1ae7bc9375ac79fef8d1495c17e5680cf3d601b1c2ff1ed4d75ef2d0",
-  UPGRADE_CAP: "0x76775cfc44cc9ccf404031dfefc6408ad13d2b7d56fadd7c67d1aa6bc094bf5e",
+  PACKAGE_ID: "0x9d006bf5d2141570cf19e4cee42ed9638db7aff56cb30ad1a4b1aa212caf9adb",
+  MARKET_REGISTRY: "0xdb9b4975c219f9bfe8755031d467a274c94eacb317f7dbb144c5285a023fdc10",
+  ADMIN_CAP: "0xf729d4b7c157cfa3e1cda4098caf2a57fe7e60ffff8be62e46bda906ec4ff462",
+  UPGRADE_CAP: "0xc11f4572360048eb24ef64967b4a1f0c419ec7318aa849e448252d33fc54291d",
   NETWORK: "testnet",
 };
 ```
@@ -193,7 +193,7 @@ async function subscribeToMarketEvents() {
 ```typescript
 // These are shared - reference by ID
 const SHARED_OBJECTS = {
-  MarketRegistry: "0x26ccdbdc1b9d2f71a5155e11953a495128f30c3acbf0108d1d4f17701c829d7f",
+  MarketRegistry: "0xdb9b4975c219f9bfe8755031d467a274c94eacb317f7dbb144c5285a023fdc10",
   Clock: "0x6", // Sui system clock
 };
 ```
